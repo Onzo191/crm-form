@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SubmitFormController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-use App\Http\Controllers\WebhookController;
-
-Route::post('/submit-form', [WebhookController::class, 'submitForm']);
+Route::get('/', [SubmitFormController::class, 'view']);
+Route::post('/submit-form-webhook', [SubmitFormController::class, 'postWithWebhook']);
+Route::post('/submit-form-api', [SubmitFormController::class, 'postWithApi']);
